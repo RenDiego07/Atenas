@@ -1,0 +1,37 @@
+name: atenas-backend
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - sqlite
+  - setuptools
+  - wheel
+  - numpy
+  - ffmpeg            # <— important for audio decoding
+  # (optional) only if you want a local Postgres server:
+  # - postgresql
+
+  - pip:
+      - Django==4.2
+      - djangorestframework==3.14.0
+      - djangorestframework-simplejwt==5.5.1
+      - psycopg2-binary==2.9.6
+      - django-cors-headers==3.14.0
+      - pytest==7.2.2
+      - pytest-django==4.5.2
+      - python-dotenv
+      - requests==2.32.5
+      - pyyaml==6.0.3
+      - transformers==4.57.1
+      - huggingface-hub==0.36.0
+      - faster-whisper==1.2.1
+      - ctranslate2==4.6.0        # <— optional explicit pin
+      - onnxruntime==1.23.2       # ok on Apple Silicon
+      - safetensors==0.6.2
+      - tokenizers==0.22.1
+      - sentencepiece==0.2.1
+      - av==16.0.1
+      - coloredlogs==15.0.1
+      - humanfriendly==10.0
