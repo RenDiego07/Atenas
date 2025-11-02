@@ -9,7 +9,7 @@ class Transcription(models.Model):
     language = models.CharField(max_length=40, blank=True, default="Spanish")
     status = models.CharField(max_length=40, default="queued")   
     created_at = models.DateTimeField(auto_now_add=True)
-    audio_file = models.CharField(max_length=100)
+    audio_file = models.FileField(upload_to='audios/')
 
 class TranscriptionChunk(models.Model):
     transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name = "chunks")
