@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from apps.api.models import Transcription
+from apps.api.models import TranscriptionChunk
 
 class AudioCreateSerializer(serializers.ModelSerializer):
     audio_file = serializers.FileField()
@@ -17,3 +18,17 @@ class AudioCreateSerializer(serializers.ModelSerializer):
         if file.size > 300 * 1024 * 1024:
             raise serializers.ValidationError('EL AUDIO SOBREPASA LOS 300MB')
         return file 
+    
+class TranscriptionChunkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TranscriptionChunk
+        fields = ['id','index','file','start_time','end_time','duration','status','created_at']
+        read_only_fields = fields
+
+        
+class TranscriptionDetailSerializer(serializers.ModelSerializer):
+    chunks = TranscriptionChunkSerializer(many=True, read_only=True)
+    class Meta:
+        model = Transcription
+        fields = ['id','user','audio_file','total_duration','language','status','created_at','chunks']
+        read_only_fields = fields

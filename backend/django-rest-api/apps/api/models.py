@@ -16,7 +16,14 @@ class TranscriptionChunk(models.Model):
     start_time = models.IntegerField(null=True, blank=True)
     end_time = models.IntegerField(null=True, blank=True)
     text = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length = 40, default="queued")
+    status = models.CharField(max_length = 40, default="ready")
+    index = models.PositiveIntegerField(null=True, blank=True)
+    file = models.FileField(upload_to = 'audios/chunks/',  null=True, blank=True)
+    duration_sec = models.IntegerField(null=True, blank = True)
+
+    class Meta:
+        unique_together = ('transcription', 'index')
+        ordering = ['index']
 
 class Summary(models.Model):
     transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name = "summary")
