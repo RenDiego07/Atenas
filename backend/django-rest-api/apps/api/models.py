@@ -12,18 +12,22 @@ class Transcription(models.Model):
     audio_file = models.FileField(upload_to='audios/')
 
 class TranscriptionChunk(models.Model):
-    transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name = "chunks")
-    start_time = models.IntegerField(null=True, blank=True)
-    end_time = models.IntegerField(null=True, blank=True)
-    text = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length = 40, default="ready")
+    transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name="chunks")
+    start_time = models.IntegerField(null=True, blank=True)  # start time in seconds
+    end_time = models.IntegerField(null=True, blank=True)    # end time in seconds
+    duration_sec = models.FloatField(null=True, blank=True)  # actual chunk duration in seconds
+    text = models.TextField(blank=True, null=True)           # transcribed text (future use)
+    status = models.CharField(max_length=40, default="ready")
     index = models.PositiveIntegerField(null=True, blank=True)
-    file = models.FileField(upload_to = 'audios/chunks/',  null=True, blank=True)
-    duration_sec = models.IntegerField(null=True, blank = True)
+    file = models.FileField(upload_to='audios/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('transcription', 'index')
         ordering = ['index']
+
+    def __str__(self):
+        return f"Chunk {self.index} of Transcription {self.transcription.id}"
 
 class Summary(models.Model):
     transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name = "summary")

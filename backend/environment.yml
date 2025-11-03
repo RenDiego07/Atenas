@@ -3,35 +3,170 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.11
-  - pip
-  - sqlite
-  - setuptools
-  - wheel
-  - numpy
-  - ffmpeg            # <— important for audio decoding
-  # (optional) only if you want a local Postgres server:
-  # - postgresql
-
+  - aom=3.9.1=h7bae524_0
+  - bzip2=1.0.8=hd037594_8
+  - ca-certificates=2025.10.5=hbd8a1cb_0
+  - cairo=1.18.4=h6a3b0d2_0
+  - dav1d=1.2.1=hb547adb_0
+  - dbus=1.16.2=hda038a8_0
+  - ffmpeg=8.0.0=gpl_h670d5b4_106
+  - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
+  - font-ttf-inconsolata=3.000=h77eed37_0
+  - font-ttf-source-code-pro=2.038=h77eed37_0
+  - font-ttf-ubuntu=0.83=h77eed37_3
+  - fontconfig=2.15.0=h1383a14_1
+  - fonts-conda-ecosystem=1=0
+  - fonts-conda-forge=1=0
+  - freetype=2.14.1=hce30654_0
+  - fribidi=1.0.16=hc919400_0
+  - gdk-pixbuf=2.44.4=h7542897_0
+  - glslang=16.0.0=h60b4770_0
+  - gmp=6.3.0=h7bae524_2
+  - graphite2=1.3.14=hec049ff_2
+  - harfbuzz=12.1.0=haf38c7b_0
+  - icu=75.1=hfee45f7_0
+  - lame=3.100=h1a8c8d9_1003
+  - lerc=4.0.0=hd64df32_1
+  - libabseil=20250512.1=cxx17_hd41c47c_0
+  - libass=0.17.4=hcbd7ca7_0
+  - libblas=3.9.0=38_h51639a9_openblas
+  - libcblas=3.9.0=38_hb0561ab_openblas
+  - libcxx=21.1.4=hf598326_2
+  - libdeflate=1.24=h5773f1b_0
+  - libexpat=2.7.1=hec049ff_0
+  - libffi=3.5.2=he5f378a_0
+  - libfreetype=2.14.1=hce30654_0
+  - libfreetype6=2.14.1=h6da58f4_0
+  - libgfortran=15.2.0=hfcf01ff_1
+  - libgfortran5=15.2.0=h742603c_1
+  - libglib=2.86.1=he69a767_1
+  - libhwloc=2.12.1=default_h48b22c3_1002
+  - libiconv=1.18=h23cfdf5_2
+  - libintl=0.25.1=h493aca8_0
+  - libjpeg-turbo=3.1.0=h5505292_0
+  - liblapack=3.9.0=38_hd9741b5_openblas
+  - liblzma=5.8.1=h39f12f2_2
+  - libogg=1.3.5=h48c0fde_1
+  - libopenblas=0.3.30=openmp_ha158390_3
+  - libopenvino=2025.2.0=h56e7ac4_1
+  - libopenvino-arm-cpu-plugin=2025.2.0=h56e7ac4_1
+  - libopenvino-auto-batch-plugin=2025.2.0=he81eb65_1
+  - libopenvino-auto-plugin=2025.2.0=he81eb65_1
+  - libopenvino-hetero-plugin=2025.2.0=h273c05f_1
+  - libopenvino-ir-frontend=2025.2.0=h273c05f_1
+  - libopenvino-onnx-frontend=2025.2.0=h6386500_1
+  - libopenvino-paddle-frontend=2025.2.0=h6386500_1
+  - libopenvino-pytorch-frontend=2025.2.0=hec049ff_1
+  - libopenvino-tensorflow-frontend=2025.2.0=hee62d61_1
+  - libopenvino-tensorflow-lite-frontend=2025.2.0=hec049ff_1
+  - libopus=1.5.2=h48c0fde_0
+  - libpng=1.6.50=h280e0eb_1
+  - libprotobuf=6.31.1=h658db43_2
+  - librsvg=2.60.0=h5c55ec3_0
+  - libsqlite=3.50.4=h4237e3c_0
+  - libtiff=4.7.1=h7dc4979_0
+  - libusb=1.0.29=hbc156a2_0
+  - libvorbis=1.3.7=h81086ad_2
+  - libvpx=1.14.1=h7bae524_0
+  - libvulkan-loader=1.4.328.1=h49c215f_0
+  - libwebp-base=1.6.0=h07db88b_0
+  - libxml2=2.15.1=h9329255_0
+  - libxml2-16=2.15.1=h0ff4647_0
+  - libzlib=1.3.1=h8359307_2
+  - llvm-openmp=21.1.4=h4a912ad_0
+  - ncurses=6.5=h5e97a16_3
+  - numpy=2.3.4=py311h8685306_0
+  - openh264=2.6.0=hb5b2745_0
+  - openssl=3.5.4=h5503f6c_0
+  - pango=1.56.4=h875632e_0
+  - pcre2=10.46=h7125dd6_0
+  - pip=25.2=pyh8b19718_0
+  - pixman=0.46.4=h81086ad_1
+  - pugixml=1.15=hd3d436d_0
+  - python=3.11.14=h18782d2_2_cpython
+  - python_abi=3.11=8_cp311
+  - readline=8.2=h1d1bf99_2
+  - sdl2=2.32.56=h248ca61_0
+  - sdl3=3.2.26=h919df07_0
+  - setuptools=80.9.0=pyhff2d567_0
+  - shaderc=2025.4=h1a5098f_0
+  - snappy=1.2.2=hd121638_0
+  - spirv-tools=2025.4=ha7d2532_0
+  - sqlite=3.50.4=hb5dd463_0
+  - svt-av1=3.1.2=h12ba402_0
+  - tbb=2022.3.0=h66ce52b_0
+  - tk=8.6.13=h892fb3f_2
+  - wheel=0.45.1=pyhd8ed1ab_1
+  - x264=1!164.3095=h57fd34a_2
+  - x265=3.5=hbc6ce65_3
+  - zstd=1.5.7=h6491c7d_2
   - pip:
-      - Django==4.2
+      - amqp==5.3.1
+      - asgiref==3.10.0
+      - attrs==25.4.0
+      - av==16.0.1
+      - billiard==4.2.2
+      - celery==5.5.3
+      - certifi==2025.10.5
+      - charset-normalizer==3.4.4
+      - click==8.3.0git 
+      - click-didyoumean==0.3.1
+      - click-plugins==1.1.1.2
+      - click-repl==0.3.0
+      - coloredlogs==15.0.1
+      - ctranslate2==4.6.0
+      - django==4.2
+      - django-cors-headers==3.14.0
       - djangorestframework==3.14.0
       - djangorestframework-simplejwt==5.5.1
+      - faster-whisper==1.2.1
+      - filelock==3.20.0
+      - flatbuffers==25.9.23
+      - fsspec==2025.10.0
+      - hf-xet==1.2.0
+      - huggingface-hub==0.36.0
+      - humanfriendly==10.0
+      - idna==3.11
+      - iniconfig==2.3.0
+      - jinja2==3.1.6
+      - kombu==5.5.4
+      - llvmlite==0.45.1
+      - markupsafe==3.0.3
+      - more-itertools==10.8.0
+      - mpmath==1.3.0
+      - mutagen==1.47.0
+      - networkx==3.5
+      - numba==0.62.1
+      - onnxruntime==1.23.2
+      - openai-whisper==20250625
+      - packaging==25.0
+      - pluggy==1.6.0
+      - prompt-toolkit==3.0.52
+      - protobuf==6.33.0
       - psycopg2-binary==2.9.6
-      - django-cors-headers==3.14.0
+      - pyjwt==2.10.1
       - pytest==7.2.2
       - pytest-django==4.5.2
-      - python-dotenv
-      - requests==2.32.5
+      - python-dateutil==2.9.0.post0
+      - python-dotenv==1.2.1
+      - pytz==2025.2
       - pyyaml==6.0.3
-      - transformers==4.57.1
-      - huggingface-hub==0.36.0
-      - faster-whisper==1.2.1
-      - ctranslate2==4.6.0        # <— optional explicit pin
-      - onnxruntime==1.23.2       # ok on Apple Silicon
+      - redis==7.0.1
+      - regex==2025.10.23
+      - requests==2.32.5
       - safetensors==0.6.2
-      - tokenizers==0.22.1
       - sentencepiece==0.2.1
-      - av==16.0.1
-      - coloredlogs==15.0.1
-      - humanfriendly==10.0
+      - six==1.17.0
+      - sqlparse==0.5.3
+      - sympy==1.14.0
+      - tiktoken==0.12.0
+      - tokenizers==0.22.1
+      - torch==2.9.0
+      - tqdm==4.67.1
+      - transformers==4.57.1
+      - typing-extensions==4.15.0
+      - tzdata==2025.2
+      - urllib3==2.5.0
+      - vine==5.1.0
+      - wcwidth==0.2.14
+prefix: /opt/miniconda3/envs/atenas-backend
