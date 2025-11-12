@@ -20,7 +20,7 @@ load_dotenv(BASE_DIR / '../../.env')
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-secret-key')
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1', 'localhost']
 
 if os.getenv('POSTGRES_DB'):
     DATABASES = {
