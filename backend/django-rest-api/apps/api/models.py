@@ -21,6 +21,7 @@ class TranscriptionChunk(models.Model):
     index = models.PositiveIntegerField(null=True, blank=True)
     file = models.FileField(upload_to='audios/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    summary = models.TextField(blank=True, null = True)
 
     class Meta:
         unique_together = ('transcription', 'index')

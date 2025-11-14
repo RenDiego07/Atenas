@@ -24,7 +24,7 @@ class TranscriptionChunkSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = TranscriptionChunk
-        fields = ['id','index','file','file_url','start_time','end_time','duration_sec','status','text','created_at']
+        fields = ['id','index','file','file_url','start_time','end_time','duration_sec','status','text','summary','created_at']
         read_only_fields = fields
         
     def get_file_url(self, obj):

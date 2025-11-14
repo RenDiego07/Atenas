@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import upload, list_transcriptions, get_transcription, manual_chunk, list_chunks, transcribe
+from .views import upload, list_transcriptions, get_transcription, manual_chunk, list_chunks, transcribe, get_summary
 
 urlpatterns = [
     path('upload/', upload, name='transcription-upload'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/chunk/', manual_chunk, name='transcription-chunk'),
     path('<int:pk>/transcribe/', transcribe, name='transcription-transcribe'),
     path('<int:pk>/chunks/', list_chunks, name='transcription-chunks'),
+    path('<int:pk>/summary/', get_summary, name='transcription-summary'),
 ]
