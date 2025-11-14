@@ -18,6 +18,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password_confirm')
         user = User.objects.create_user(**validated_data)
+        # Explicitly set last_login to None for new users
+        user.last_login = None
+        user.save()
         return user
 
 class UserLoginSerializer(serializers.Serializer):
