@@ -1,6 +1,6 @@
 // src/screens/RegisterScreen.tsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import { register } from '../services/auth/authService';
 import { useNavigation } from '@react-navigation/native';
 import theme from '../styles/theme';
@@ -24,15 +24,23 @@ const RegisterScreen = () => {
   const handleRegister = async () => {
     try {
       const params = {
-        username,
-        email,
-        password,
+        username: username,
+        email: email,
+        password: password,
         password_confirm: passwordConfirm,
         first_name: firstName,
         last_name: lastName,
       };
       const response = await register(params);  // Pasar el objeto completo
       console.log('Respuesta:', response);
+
+      Alert.alert(
+        '¡Éxito!',
+        'Tu cuenta ha sido creada correctamente. Por favor, inicia sesión.',
+        [{ text: 'OK' }]
+      );
+
+      navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
     } catch (error) {
       console.error('Error de registro:', error);
     }

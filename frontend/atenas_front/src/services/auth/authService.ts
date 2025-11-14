@@ -1,18 +1,17 @@
 // src/services/authService.ts
 
 import { Alert } from 'react-native';
-import axios from 'axios';
+import axiosInstance from '../axiosConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // URL de tu backend para autenticación
-const API_URL = 'http://10.0.2.2:8000/api/auth';
-
-// Guardar el token en AsyncStorage (opcional)
-import AsyncStorage from '@react-native-async-storage/async-storage';
+const AUTH_URL = '/auth';
 
 // Función para registrar un usuario
 export const register = async (params: RegisterAuthParams) => {
   try {
-    const response = await axios.post(`${API_URL}/register/`, {
+    console.log('Registrando con parámetros:', params);
+    const response = await axiosInstance.post(`${AUTH_URL}/register/`, {
       username: params.username,
       email: params.email,
       password: params.password,
@@ -30,7 +29,7 @@ export const register = async (params: RegisterAuthParams) => {
 // Función para iniciar sesión
 export const login = async (params: LoginAuthParams) => {
   try {
-    const response = await axios.post(`${API_URL}/login/`, {
+    const response = await axiosInstance.post(`${AUTH_URL}/login/`, {
       username: params.username,
       password: params.password,
     });

@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import theme from '../styles/theme';
 
 const NavigationBar = () => {
   const navigation = useNavigation<any>();
+  const route = useRoute();
+  
+  const currentRoute = route.name;
 
   const handleLogout = async () => {
     Alert.alert(
@@ -35,22 +38,40 @@ const NavigationBar = () => {
     );
   };
 
+  const isActive = (routeName: string) => currentRoute === routeName;
+
   return (
     <View style={styles.container}>
       <TouchableOpacity 
-        style={styles.sideButton} 
+        style={[
+          styles.sideButton,
+          isActive('Summaries') && styles.activeButton
+        ]} 
         onPress={() => navigation.navigate('Summaries')}
       >
         <Text style={styles.icon}>📚</Text>
-        <Text style={styles.sideButtonText}>Resúmenes</Text>
+        <Text style={[
+          styles.sideButtonText,
+          isActive('Summaries') && styles.activeButtonText
+        ]}>
+          Resúmenes
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity 
-        style={styles.centerButton} 
+        style={[
+          styles.centerButton,
+          !isActive('Home') && styles.inactiveCenterButton
+        ]} 
         onPress={() => navigation.navigate('Home')}
       >
         <Text style={styles.centerIcon}>🏛️</Text>
-        <Text style={styles.centerButtonText}>Inicio</Text>
+        <Text style={[
+          styles.centerButtonText,
+          !isActive('Home') && styles.inactiveCenterButtonText
+        ]}>
+          Inicio
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -86,6 +107,10 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.sm,
     paddingHorizontal: theme.spacing.md,
     flex: 1,
+    borderRadius: theme.borderRadius.md,
+  },
+  activeButton: {
+    backgroundColor: `${theme.colors.primary}15`,
   },
   centerButton: {
     alignItems: 'center',
@@ -102,6 +127,13 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
+  inactiveCenterButton: {
+    backgroundColor: theme.colors.surface,
+    borderWidth: 2,
+    borderColor: theme.colors.border,
+    shadowOpacity: 0,
+    elevation: 0,
+  },
   icon: {
     fontSize: 24,
     marginBottom: theme.spacing.xs,
@@ -115,10 +147,17 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     fontWeight: theme.fontWeight.medium,
   },
+  activeButtonText: {
+    color: theme.colors.primary,
+    fontWeight: theme.fontWeight.semibold,
+  },
   centerButtonText: {
     fontSize: theme.fontSize.sm,
     color: theme.colors.textOnPrimary,
     fontWeight: theme.fontWeight.semibold,
+  },
+  inactiveCenterButtonText: {
+    color: theme.colors.textSecondary,
   },
 });
 
