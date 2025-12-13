@@ -95,7 +95,6 @@ htmlcov/
 *.flac
 *.aac
 
-# Archivos temporales del proyecto
-test.py
-test_*.py
-debug_*.py
+*.md
+!README.md
+!**/README.md

@@ -1,35 +1,65 @@
 import requests
+import time
 
-# Login
-login_response = requests.post('http://localhost:8000/api/auth/login/', json={
-    'username': 'Fer', 'password': 'Espol123'
-})
-token = login_response.json()['access']
+def main():
+    # Login
+    print("🔐 Iniciando sesión...")
+    login_response = requests.post('http://localhost:8000/api/auth/login/', json={
+        'username': 'Fer', 'password': 'Espol123'
+    })
+    
+    if login_response.status_code != 200:
+        print(f"❌ Error en login: {login_response.json()}")
+        return
+    
+    token = login_response.json()['access']
+    print("✅ Login exitoso\n")
 
-# 1. Subir archivo (se transcribe y resume automáticamente)
-with open('./economía.mp3', 'rb') as audio_file:
-    response = requests.post(
-        'http://localhost:8000/api/transcriptions/upload/',
-        headers={'Authorization': f'Bearer {token}'},
-        files={'audio_file': audio_file}
-    )
+    # Upload con espera síncrona
+    print("📤 Subiendo audio (esperando hasta que termine)...")
+    print("⏳ Esto puede tardar varios minutos...\n")
+    
+    start = time.time()
+    
+    with open('./economía.mp3', 'rb') as audio_file:
+        response = requests.post(
+            'http://localhost:8000/api/transcriptions/upload/',
+            headers={'Authorization': f'Bearer {token}'},
+            files={'audio_file': audio_file},
+            data={
+                'custom_prompt': 'Resume destacando puntos clave y conceptos importantes'
+            },
+            timeout=660  # 11 minutos (más que el timeout del servidor)
+        )
 
-transcription_id = response.json()['id']
+    elapsed = time.time() - start
+    
+    print(f"\n📊 Status Code: {response.status_code}")
+    print(f"⏱️  Tiempo total: {elapsed:.2f} segundos\n")
+    
+    if response.status_code == 201:
+        data = response.json()
+        print("✅ RESUMEN COMPLETO:")
+        print("=" * 80)
+        print(f"🎵 Audio: {data['audio_name']}")
+        print(f"📋 ID: {data['id']}")
+        print(f"⏱️  Procesamiento: {data.get('processing_time', 'N/A')}s")
+        print(f"\n📝 RESUMEN:")
+        print(data['summary_content'])
+        print("=" * 80)
+        
+    elif response.status_code == 202:
+        data = response.json()
+        print("⏰ TIMEOUT ALCANZADO (aún procesando):")
+        print(f"   ID: {data['id']}")
+        print(f"   Estado: {data['status']}")
+        print(f"   Mensaje: {data['message']}")
+        print(f"\n💡 Consulta el historial para ver el resultado:")
+        print(f"   GET /api/transcriptions/")
+        
+    else:
+        print(f"❌ Error:")
+        print(response.json())
 
-# # 2. Monitorear progreso
-# summary_status = requests.get(
-#     f'http://localhost:8000/api/transcriptions/{transcription_id}/summary/',
-#     headers={'Authorization': f'Bearer {token}'}
-# )
-# print(summary_status.json())
-
-# 3. Solicitar resumen personalizado
-custom_summary = requests.post(
-    f'http://localhost:8000/api/transcriptions/{8}/summary/',
-    headers={'Authorization': f'Bearer {token}'},
-    json={
-        'prompt': 'Genere un resumen extenso y detallado, destacando los puntos clave y proporcionando contexto',
-        'force': True  # Regenerar si ya existe
-    }
-)
-print(custom_summary.json())
+if __name__ == "__main__":
+    main()

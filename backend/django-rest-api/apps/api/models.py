@@ -10,6 +10,8 @@ class Transcription(models.Model):
     status = models.CharField(max_length=40, default="queued")   
     created_at = models.DateTimeField(auto_now_add=True)
     audio_file = models.FileField(upload_to='audios/')
+    # Campo para pasar prompt personalizado através del pipeline automático
+    temp_custom_prompt = models.TextField(max_length=1000, blank=True, null=True)
 
 class TranscriptionChunk(models.Model):
     transcription = models.ForeignKey(Transcription, on_delete=models.CASCADE, related_name="chunks")
